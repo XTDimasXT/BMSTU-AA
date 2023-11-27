@@ -1,6 +1,6 @@
 from functions import *
 
-def levenshtein_distance(str1, str2):
+def levenshtein_distance(str1, str2, flag_output=False):
     n, m = len(str1), len(str2)
     matrix = create_levenshtein_matrix(n + 1, m + 1)
     
@@ -15,15 +15,16 @@ def levenshtein_distance(str1, str2):
                 
             matrix[i][j] = min(action_add, action_delete, action_change)
     
-    print("\nМАТРИЦА:")
-    print_matrix(matrix, str1, str2)
+    if flag_output:
+        print("\nМАТРИЦА:")
+        print_matrix(matrix, str1, str2)
 
     result = matrix[n][m]
     
     return result
     
 
-def damerau_levenshtein_distance(str1, str2):
+def damerau_levenshtein_distance(str1, str2, flag_output=False):
     n, m = len(str1), len(str2)
     matrix = create_levenshtein_matrix(n + 1, m + 1)
     
@@ -42,8 +43,9 @@ def damerau_levenshtein_distance(str1, str2):
                 
             matrix[i][j] = min(action_add, action_delete, action_change, action_swap)
     
-    print("\nМАТРИЦА:")
-    print_matrix(matrix, str1, str2)
+    if flag_output:
+        print("\nМАТРИЦА:")
+        print_matrix(matrix, str1, str2)
     
     result = matrix[n][m]
     
@@ -71,7 +73,7 @@ def damerau_levenshtein_distance_recursive(str1, str2):
     return result
 
 
-def damerau_levenshtein_distance_recursive_cache(str1, str2):
+def damerau_levenshtein_distance_recursive_cache(str1, str2, flag_output=False):
     n, m = len(str1), len(str2)
     matrix = create_levenshtein_matrix(n + 1, m + 1)
 
@@ -81,8 +83,9 @@ def damerau_levenshtein_distance_recursive_cache(str1, str2):
 
     recursive_cache(str1, str2, n, m, matrix)
 
-    print("\nМАТРИЦА:")
-    print_matrix(matrix, str1, str2)
+    if flag_output:
+        print("\nМАТРИЦА:")
+        print_matrix(matrix, str1, str2)
 
     result = matrix[n][m]
 

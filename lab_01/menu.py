@@ -25,12 +25,12 @@ def menu():
             
         if option == 1:
             str1, str2 = input_strings()
-            result = levenshtein_distance(str1, str2)
+            result = levenshtein_distance(str1, str2, flag_output=True)
             print("\nРезультат:", result)
         
         elif option == 2:
             str1, str2 = input_strings()
-            result = damerau_levenshtein_distance(str1, str2)
+            result = damerau_levenshtein_distance(str1, str2, flag_output=True)
             print("\nРезультат:", result)
             
         elif option == 3:
@@ -40,7 +40,7 @@ def menu():
         
         elif option == 4:
             str1, str2 = input_strings()
-            result = damerau_levenshtein_distance_recursive_cache(str1, str2)
+            result = damerau_levenshtein_distance_recursive_cache(str1, str2, flag_output=1)
             print("\nРезультат:", result)
             
         elif option == 5:
