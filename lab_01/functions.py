@@ -52,5 +52,5 @@ def get_time(function, length):
         
         time_res += (time_2 - time_1)
         
-    return time_res / count
+    return time_res
         

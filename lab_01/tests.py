@@ -1,11 +1,11 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 from algorithms import *
 from functions import *
 
 
 def levenshtein_graph(lev_time):
-    lengths = [i for i in range(0, 10, 2)]
+    lengths = [i for i in range(10)]
     
     fig = plt.figure(figsize=(10, 7))
     plot = fig.add_subplot()
@@ -21,7 +21,7 @@ def levenshtein_graph(lev_time):
     
     
 def damerau_levenshtein_graph(dam_lev_time):
-    lengths = [i for i in range(0, 10, 2)]
+    lengths = [i for i in range(10)]
     
     fig = plt.figure(figsize=(10, 7))
     plot = fig.add_subplot()
@@ -37,7 +37,7 @@ def damerau_levenshtein_graph(dam_lev_time):
     
     
 def damerau_levenshtein_recursive_time(dam_lev_rec_time):
-    lengths = [i for i in range(0, 10, 2)]
+    lengths = [i for i in range(10)]
     
     fig = plt.figure(figsize=(10, 7))
     plot = fig.add_subplot()
@@ -53,7 +53,7 @@ def damerau_levenshtein_recursive_time(dam_lev_rec_time):
     
 
 def damerau_levenshtein_recursive_cache_time(dam_lev_rec_cache_time):
-    lengths = [i for i in range(0, 10, 2)]
+    lengths = [i for i in range(10)]
     
     fig = plt.figure(figsize=(10, 7))
     plot = fig.add_subplot()
@@ -74,15 +74,15 @@ def test_time_memory():
     dam_lev_rec_time = []
     dam_lev_rec_cache_time = []
     
-    for i in range(0, 10, 2):
+    for i in range(10):
         lev_time.append(get_time(levenshtein_distance, i))
         dam_lev_time.append(get_time(damerau_levenshtein_distance, i))
         dam_lev_rec_time.append(get_time(damerau_levenshtein_distance_recursive, i))
         dam_lev_rec_cache_time.append(get_time(damerau_levenshtein_distance_recursive_cache, i))
         print("size", i, "has been ended\n")
         
-    for i in range(0, 10, 2):
-        print(" %4d | %.4f | %.4f | %.4f | %.4f\n" %(i, lev_time[i], dam_lev_time[i], dam_lev_rec_time[i], dam_lev_rec_cache_time[i]))
+    for i in range(10):
+        print(" %1d | %.4f | %.4f | %.4f | %.4f\n" %(i, lev_time[i], dam_lev_time[i], dam_lev_rec_time[i], dam_lev_rec_cache_time[i]))
         
     levenshtein_graph(lev_time)
     damerau_levenshtein_graph(dam_lev_time)
