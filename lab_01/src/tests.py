@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 
-from algorithms import *
+from lev import *
+from dam_lev import *
+from dam_lev_rec import *
+from dam_lev_cache import *
 from functions import *
 
 
