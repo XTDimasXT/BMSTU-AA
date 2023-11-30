@@ -39,7 +39,7 @@ def get_random_str(length):
         
 
 def get_time(function, length):
-    count = 100
+    count = 1000
     time_res = 0
     
     for _ in range(count):
