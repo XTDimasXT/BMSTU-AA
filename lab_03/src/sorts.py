@@ -1,3 +1,5 @@
+import random
+
 def block_sort(arr):
     block_size = 10
     blocks = []
@@ -36,7 +38,7 @@ def quick_sort(arr):
     greater = []
 
     if len(arr) > 1:
-        pivot = arr[0]
+        pivot = arr[random.randint(0, len(arr) - 1)]
         for x in arr:
             if x < pivot:
                 less.append(x)
