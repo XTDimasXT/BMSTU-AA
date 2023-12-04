@@ -37,7 +37,7 @@ def get_reversed_array(size):
 
 def get_time(function_sort, function_arr, size):
     arr = function_arr(size)
-    count = 100
+    count = 1000
     time_res = 0
     
     for _ in range(count):
