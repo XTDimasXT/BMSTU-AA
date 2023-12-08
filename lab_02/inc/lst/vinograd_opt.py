@@ -1,5 +1,3 @@
-import numpy as np
-
 def get_row_factor_opt(A):
     row_factor = [0] * len(A)
     temp = len(A[0]) // 2

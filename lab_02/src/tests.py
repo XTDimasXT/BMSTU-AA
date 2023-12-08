@@ -87,6 +87,12 @@ def build_graph(
         label="Алгоритм Винограда с оптимизацией",
         marker="v",
     )
+    plot.plot(
+        sizes,
+        time_strassen,
+        label="Алгоритм Штрассена",
+        marker="D",
+    )
 
     plt.legend()
     plt.grid()
@@ -104,14 +110,14 @@ def compare_time():
     time_strassen = []
     time_vinograd_opt = []
 
-    sizes = list(range(6, 53, 4))
+    sizes = list(range(7, 53, 4))
 
     for n in sizes:
         print("n= ", n)
 
         time_classic.append(time_analysis(classical_mult, 500, n))
         time_vinograd.append(time_analysis(vinograd, 500, n))
-        # time_strassen.append(time_analysis(strassen, 500, n))
+        time_strassen.append(time_analysis(strassen, 500, n))
         time_vinograd_opt.append(time_analysis(vinograd_opt, 500, n))
 
     with open("classic.log", "w") as dist:
@@ -122,6 +128,17 @@ def compare_time():
 
     with open("vinograd_opt.log", "w") as dist:
         print(time_vinograd_opt, file=dist)
+
+    with open("strassen.log", "w") as dist:
+        print(time_strassen, file=dist)
+
+    print_measurement_res(
+        sizes,
+        time_classic,
+        time_vinograd,
+        time_vinograd_opt,
+        time_strassen,
+    )
 
     build_graph(
         sizes,
