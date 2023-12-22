@@ -88,6 +88,89 @@ def matrix_time(lev_time, dam_lev_time, dam_lev_rec_cache_time):
     plt.xlabel("Длина, символы")
 
     plt.show()
+
+
+def levenshtein_graph_mem(lev_memory):
+    lengths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 25, 50, 75, 100, 150, 200, 300]
+    
+    fig = plt.figure(figsize=(7, 5))
+    plot = fig.add_subplot()
+    plot.plot(lengths, lev_memory, label = "Левенштейн")
+
+    plt.legend()
+    plt.grid()
+    plt.title("График затрачиваемой памяти")
+    plt.ylabel("Память, байты")
+    plt.xlabel("Длина, символы")
+
+    plt.show()
+    
+    
+def damerau_levenshtein_graph_mem(dam_lev_memory):
+    lengths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 25, 50, 75, 100, 150, 200, 300]
+    
+    fig = plt.figure(figsize=(7, 5))
+    plot = fig.add_subplot()
+    plot.plot(lengths, dam_lev_memory, label = "Дамерау-Левенштейн")
+
+    plt.legend()
+    plt.grid()
+    plt.title("График затрачиваемой памяти")
+    plt.ylabel("Память, байты")
+    plt.xlabel("Длина, символы")
+
+    plt.show()
+    
+    
+def damerau_levenshtein_recursive_memory(dam_lev_rec_memory):
+    lengths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    
+    fig = plt.figure(figsize=(7, 5))
+    plot = fig.add_subplot()
+    plot.plot(lengths, dam_lev_rec_memory, label = "Дамерау-Левенштейн (рекурсивно)")
+
+    plt.legend()
+    plt.grid()
+    plt.title("График затрачиваемой памяти")
+    plt.ylabel("Память, байты")
+    plt.xlabel("Длина, символы")
+
+    plt.show()
+    
+
+def damerau_levenshtein_recursive_cache_memory(dam_lev_rec_cache_memory):
+    lengths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 25, 50, 75, 100, 150, 200, 300]
+    
+    fig = plt.figure(figsize=(7, 5))
+    plot = fig.add_subplot()
+    plot.plot(lengths, dam_lev_rec_cache_memory, label = "Дамерау-Левенштейн (с кэшем)")
+
+    plt.legend()
+    plt.grid()
+    plt.title("График затрачиваемой памяти")
+    plt.ylabel("Память, байты")
+    plt.xlabel("Длина, символы")
+
+    plt.show()
+
+
+def recursive_memory(dam_lev_rec_memory, dam_lev_rec_cache_memory):
+    dam_lev_rec_cache_memory = dam_lev_rec_cache_memory[:15]
+    lengths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    
+    fig = plt.figure(figsize=(7, 5))
+    plot = fig.add_subplot()
+
+    plot.plot(lengths, dam_lev_rec_memory, label = "Дамерау-Левенштейн (рекурсивно)")
+    plot.plot(lengths, dam_lev_rec_cache_memory, label = "Дамерау-Левенштейн (с кэшем)")
+
+    plt.legend()
+    plt.grid()
+    plt.title("График затрачиваемой памяти")
+    plt.ylabel("Память, байты")
+    plt.xlabel("Длина, символы")
+
+    plt.show()
     
 
 def test_time_memory():
@@ -95,6 +178,10 @@ def test_time_memory():
     dam_lev_time = []
     dam_lev_rec_time = []
     dam_lev_rec_cache_time = []
+    lev_memory = [82, 156, 230, 376, 442, 640, 720, 960, 1072, 1376, 1472, 1808, 1952, 2336, 2464, 6112, 23168, 51648, 94464, 199296, 367681, 821124]
+    dam_lev_memory = [82, 156, 230, 376, 442, 640, 720, 960, 1072, 1376, 1472, 1808, 1952, 2336, 2464, 6112, 23168, 51648, 94464, 199296, 367681, 821124]
+    dam_lev_rec_memory = [2, 4, 6, 8, 10, 16, 16, 16, 32, 32, 32, 32, 32, 32, 32]
+    dam_lev_rec_cache_memory = [82, 156, 230, 376, 442, 640, 720, 960, 1072, 1376, 1472, 1808, 1952, 2336, 2464, 6112, 23168, 51648, 94464, 199296, 367681, 821124]
     
     for i in range(10):
         lev_time.append(get_time(levenshtein_distance, i * 20))
@@ -120,3 +207,9 @@ def test_time_memory():
     damerau_levenshtein_recursive_time(dam_lev_rec_time)
     damerau_levenshtein_recursive_cache_time(dam_lev_rec_cache_time)
     matrix_time(lev_time, dam_lev_time, dam_lev_rec_cache_time)
+
+    levenshtein_graph_mem(lev_memory)
+    damerau_levenshtein_graph_mem(dam_lev_memory)
+    damerau_levenshtein_recursive_memory(dam_lev_rec_memory)
+    damerau_levenshtein_recursive_cache_memory(dam_lev_rec_cache_memory)
+    recursive_memory(dam_lev_rec_memory, dam_lev_rec_cache_memory)

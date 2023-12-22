@@ -15,7 +15,7 @@
 \end{itemize}
 
 \section{Расстояние Левенштейна}
-Расстояние Левенштейна - это число, которое показывает, насколько различны две строки \cite{definition-lev}.
+Расстояние Левенштейна - это число, которое показывает, насколько различны две строки~\cite{definition-lev}.
 
 Любая операция имеет свою цену, но в общем виде:
 \begin{itemize}
@@ -44,24 +44,22 @@
 
 В таком случае расстояние Левенштейна между строками $str_{1}$ (длиной $l_{1}$) и $str_{2}$ (длиной $l_{2}$) можно рассчитать следующим образом:
 
-\begin{footnotesize}
-	\begin{equation}
-		\label{equation:lev}
-		D(i, j) = \begin{cases}
-			0, & \textrm{$\mbox{если }i = 0, j = 0$}\\
-			j, & \textrm{$\mbox{если }i = 0, j > 0$}\\
-			i, & \textrm{$\mbox{если }j = 0, i > 0$}\\
-			min(D(i, j - 1)+1,\\
-			\qquad D(i - 1, j) + 1, &\textrm{$\mbox{если }i > 0, j > 0$}\\
-			\qquad D(i - 1, j - 1) + change(str_{1}[i],str_{2}[j),
-		\end{cases}
-	\end{equation}
-\end{footnotesize}
+\begin{equation}
+	\label{equation:lev}
+	D(i, j) = \begin{cases}
+		0, & \textrm{$\mbox{если }i = 0, j = 0$}\\
+		j, & \textrm{$\mbox{если }i = 0, j > 0$}\\
+		i, & \textrm{$\mbox{если }j = 0, i > 0$}\\
+		min(D(i, j - 1)+1,\\
+		\qquad D(i - 1, j) + 1, &\textrm{$\mbox{если }i > 0, j > 0$}\\
+		\qquad D(i - 1, j - 1) + m(str_{1}[i],str_{2}[j),
+	\end{cases}
+\end{equation}
 
 При этом $str_{1}[i]$ и $str_{2}[j]$ сравниваются так:
 \begin{equation}
 	\label{equation:change}
-	change(a, b) = \begin{cases}
+	m(a, b) = \begin{cases}
 		0 &\text{если a = b,}\\
 		1 &\text{иначе.}
 	\end{cases}
@@ -72,26 +70,21 @@
 Фредерик Дамерау заметил, что иногда несовпадение пар соседних символов между строками является проблемой неправильного порядка записи и ввел операцию замены S (англ. swap). 
 Иными словами, операция применяется только в тех случаях, когда $str_{1}[i] = str_{2}[j - 1]$ и $str_{1}[i - 1] = str_{2}[j]$. Тогда используется следующая формула:
 
-\begin{footnotesize}
-	\begin{equation}
-		\label{equation:dam-lev}
-		D(i, j) = \begin{cases}
-			0, & \textrm{$\mbox{если }i = 0, j = 0$}\\
-			j, & \textrm{$\mbox{если }i = 0, j > 0$}\\
-			i, & \textrm{$\mbox{если }j = 0, i > 0$}\\
-			min(min(D(i, j - 1) + 1, \\
-			\qquad\qquad D(i - 1, j) + 1), \\
-			\qquad D(i - 1, j - 1) + change(str1[i], str2[j]), \\
-			\qquad \left[
-			\begin{array}{ccc}
-				D(i - 2, j - 2) + 1, & \textrm{$\mbox{если }i > 1, j > 1,$}\\
-				& \textrm{$str_{1}[i - 1] == str_{2}[j - 2],$}\\
-				& \textrm{$str_{1}[i - 2] == str_{2}[j - 1]$}
-			\end{array}
-			\right], & \textrm{$\mbox{иначе }$}
-		\end{cases}
-	\end{equation}
-\end{footnotesize}
+\begin{equation}
+	\label{equation:dam-lev}
+	D(i, j) = \begin{cases}
+		0, & \textrm{$\mbox{если }i = 0, j = 0$}\\
+		j, & \textrm{$\mbox{если }i = 0, j > 0$}\\
+		i, & \textrm{$\mbox{если }j = 0, i > 0$}\\
+		min(D(i, j - 1) + 1, & \textrm{$\mbox{если }i, j > 0,$}\\
+		\qquad D(i - 1, j) + 1, & \textrm{$S_{1}[i] = S_{2}[j - 1],$}\\
+		\qquad D(i - 1, j -1), & \textrm{$S_{1}[i - 1] = S_{2}[j]$}\\
+		\qquad D(i - 2, j - 2) + 1) \\
+		min(D(i, j - 1) + 1, \\
+		\qquad D(i - 1, j) + 1), & \textrm{$\mbox{иначе}$}\\
+		\qquad D(i - 1, j - 1) + m(S_{1}[i], S_{2}[j])) \\
+	\end{cases}
+\end{equation}
 
 \textbf{Вывод:}
 Таким образом, в этом разделе была поставлена цель, определены задачи, введены понятия расстояния Левенштейна и Дамерау---Левенштейна и выведены формулы поиска значений.
